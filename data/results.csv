@@ -1,0 +1,7 @@
+Bot A,Bot B,Score A,Score B
+TitForTat,RandomBot,418,402
+TitForTat,AlwaysCooperate,590,558
+TitForTat,AlwaysDefect,220,252
+RandomBot,AlwaysCooperate,667,327
+RandomBot,AlwaysDefect,130,498
+AlwaysCooperate,AlwaysDefect,48,768
