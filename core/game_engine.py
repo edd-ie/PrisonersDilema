@@ -9,7 +9,8 @@ class GameEngine:
     to simulate miscommunication or execution errors.
     """
 
-    def __init__(self, noise_rate=0.03, T=4, R=3, P=1, S=0):
+    # T>R>P>S defined in Details.md (5>3>1>0)
+    def __init__(self, noise_rate=0.03, T=5, R=3, P=1, S=0):
         """
         Parameters
         ----------
@@ -20,7 +21,7 @@ class GameEngine:
         """
         self.noise_rate = noise_rate
 
-        # Balanced payoff matrix (less extreme than default)
+        # Balanced payoff matrix
         self.PAYOFFS = {
             (Move.COOPERATE, Move.COOPERATE): (R, R),
             (Move.COOPERATE, Move.DEFECT):    (S, T),

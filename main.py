@@ -8,6 +8,7 @@ from bots.pavlov_bot import PavlovBot
 from bots.adaptive_random import AdaptiveRandom
 from core.util import plot_bar_race
 import matplotlib.pyplot as plt
+from core.util import draw_leaderboard
 
 def main():
     bots = [
@@ -21,10 +22,9 @@ def main():
     ]
 
     tournament = Tournament(bots, noise_rate=0.03)
-
     history = tournament.run_evolution(
-        generations=10,
-        survival_rate=0.70,
+        generations=20,
+        survival_rate=0.80,
         rounds_per_match=500,
         mutate=True
     )
@@ -43,14 +43,16 @@ def main():
         "AlwaysDefect"
     ]
 
-    ani = plot_bar_race(history, all_bots, interval=1200, frames_per_gen=6)
-
+    result = plot_bar_race(history, all_bots, interval=1000, frames_per_gen=5)
+    ani = result[0]
     try:
-        ani.save("tournament_evolution.mp4", writer="ffmpeg", fps=5)
+        ani.save("tournament_evolution.mp4", writer="ffmpeg", fps=8)
         print("[Info] Video saved as 'tournament_evolution.mp4'.")
     except Exception as e:
         print(f"[Warning] Could not save video: {e}")
     plt.show()
+
+    draw_leaderboard(result[1], result[2])
 
 
 if __name__ == "__main__":
